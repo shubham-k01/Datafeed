@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Sentiment Classification for Social Media Texts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project aims to develop an application that can classify sentiments expressed in text sources associated with a user on social media platforms such as Facebook, Instagram, and Twitter. The application categorizes the text into five predefined categories: Education, Crime, Transport, Health, and Hygiene. Additionally, it predicts whether the sentiment expressed in the text is positive, negative, or neutral within the corresponding category.
 
-## Available Scripts
+## Solution Overview
 
-In the project directory, you can run:
+To address the problem statement, we have implemented two models: one for classifying the text into the five categories and another for sentiment analysis within each category.
 
-### `npm start`
+### Model 1: BERT Model
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+We employed the BERT (Bidirectional Encoder Representations from Transformers) model, which is a state-of-the-art natural language processing model. BERT has demonstrated exceptional performance across various NLP tasks, including question answering, natural language inference, and more.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Model 2: DistilBERT Model
 
-### `npm test`
+The DistilBERT model is a smaller and faster version of BERT, designed for efficiency without significant loss of performance. We chose DistilBERT as our second model for sentiment analysis, leveraging its benefits in terms of computational resources and speed.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Training Data
 
-### `npm run build`
+For each model, we utilized different datasets to ensure accurate classification and sentiment analysis.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Model 1: Classification Dataset
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To train the BERT model for classification, we employed the Appify Web Scrapping Tool to scrape data from Instagram and Twitter. We collected approximately 2000 reviews and comments for each of the five categories. After preprocessing the data, we created a final CSV dataset.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Dataset Source: Instagram and Twitter using Appify Web Scrapping Tool
+- Dataset Size: Approximately 2000 reviews and comments per category
+- Preprocessing: Data preprocessing techniques were applied
+- Accuracy: 94%
 
-### `npm run eject`
+### Model 2: Sentiment Analysis Datasets
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+For training the DistilBERT model, we used two datasets: a multilingual sentiments dataset available in the Hugging Face library and an English sentiments dataset from Kaggle. Appropriate preprocessing was performed to merge these datasets.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Dataset Sources: 
+  - Multilingual Sentiments: Hugging Face library
+  - English Sentiments: Kaggle
+- Preprocessing: Merging and preprocessing techniques were applied
+- Accuracy: 82%
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Examples of Predicted Categories and Sentiments
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The models were able to predict the categories and sentiments of various text inputs. Here are some examples:
 
-## Learn More
+1. Text: "Our education system is outdated."
+   - Predicted Category: Education
+   - Sentiment: Negative
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Text: "I love how accessible public transportation has become."
+   - Predicted Category: Transport
+   - Sentiment: Positive
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Text: "The healthcare facilities in this area are inadequate."
+   - Predicted Category: Health
+   - Sentiment: Negative
 
-### Code Splitting
+4. Text: "Cleanliness is a major concern in our neighborhood."
+   - Predicted Category: Hygiene
+   - Sentiment: Negative
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+5. Text: "I witnessed a robbery yesterday, and it was terrifying."
+   - Predicted Category: Crime
+   - Sentiment: Negative
 
-### Analyzing the Bundle Size
+Please note that these examples are for illustrative purposes and showcase the capability of the models in accurately predicting the categories and sentiments associated with the provided texts.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+For detailed information on the model implementation, training, and usage instructions, please refer to the documentation provided in the project repository.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Note:** The accuracy figures mentioned above are based on the performance of the models during the training phase and may vary in real-world scenarios.
